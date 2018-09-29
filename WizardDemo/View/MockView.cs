@@ -9,7 +9,7 @@ namespace WizardDemo.View
         public string ExcelPath { get => @"C:\Users\Lenovo G50-45\Desktop\exceltestfiles\normalCoordinates.xlsx"; set => throw new NotImplementedException(); }
         public string XCoordinateHeader { get => "RW"; set => throw new NotImplementedException(); }
         public string YCoordinateHeader { get => "HW"; set => throw new NotImplementedException(); }
-        public string Projection { get => ""; set => throw new NotImplementedException(); }
+        public string Projection { get => "+proj=utm +zone=32 +ellps=GRS80 +units=m +no_defs "; set => throw new NotImplementedException(); }
         public BindingList<ColumnInfo> Zuordnungstable { get; set; }
 
         public event EventHandler OnReadingExcel;

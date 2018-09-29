@@ -1,6 +1,6 @@
 ﻿namespace WizardDemo
 {
-    partial class Form1
+    partial class ImporterDialog
     {
         /// <summary>
         /// Erforderliche Designervariable.

@@ -11,10 +11,10 @@ using WizardDemo.View;
 
 namespace WizardDemo
 {
-    public partial class Form1 : Form
+    public partial class ImporterDialog : Form
     {
 
-        public Form1()
+        public ImporterDialog()
         {
             InitializeComponent();
 

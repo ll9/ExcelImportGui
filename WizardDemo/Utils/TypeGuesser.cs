@@ -61,9 +61,9 @@ namespace WizardDemo.Utils
             if (bool.TryParse(item, out boolValue))
                 return DataType.System_Boolean;
             else if (Int32.TryParse(item, out intValue))
-                return (DataType.System_Int32 | DataType.System_Int64 | DataType.System_Double);
+                return DataType.Numeric;
             else if (Int64.TryParse(item, out bigintValue))
-                return (DataType.System_Int64 | DataType.System_Double);
+                return DataType.LongOrDouble;
             else if (double.TryParse(item, out doubleValue))
                 return DataType.System_Double;
             else if (DateTime.TryParse(item, out dateValue))

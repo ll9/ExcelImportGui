@@ -15,4 +15,24 @@ namespace WizardDemo.Utils
         DataTable ReadExcel();
         List<ColumnInfo> GetColumnInfos();
     }
+
+    public class MockExcelReader : IExcelReader
+    {
+        public MockExcelReader(string path)
+        {
+            Path = path;
+        }
+
+        public string Path { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public List<ColumnInfo> GetColumnInfos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataTable ReadExcel()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

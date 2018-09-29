@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WizardDemo.Models;
 
 namespace WizardDemo.View
 {
@@ -13,9 +14,9 @@ namespace WizardDemo.View
         string XCoordinateHeader { get; set; }
         string YCoordinateHeader { get; set; }
         string Projection { get; set; }
-        DataTable Zuordnungstable { get; set; }
+        List<ColumnInfo> Zuordnungstable { get; set; }
 
         event EventHandler OnReadingExcel;
-        event EventHandler OnStoreTable;
+        event EventHandler OnStoreDb;
     }
 }

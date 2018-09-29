@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace WizardDemo.Models
 {
 
-    class ColumnInfo
+    public class ColumnInfo
     {
         public ColumnInfo(string sourceName, string destinationName, DataType dataType)
         {

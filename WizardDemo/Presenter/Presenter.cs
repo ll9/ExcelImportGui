@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WizardDemo.Utils;
 using WizardDemo.View;
 
 namespace WizardDemo.Presenter
@@ -11,6 +13,19 @@ namespace WizardDemo.Presenter
     class Presenter
     {
         public DataTable ExcelTable { get; set; }
+        private IExcelReader _reader;
+        public IExcelReader ExcelReader
+        {
+            get
+            {
+                if (View.ExcelPath == null || !File.Exists(View.ExcelPath))
+                {
+                    throw new FileNotFoundException("Could not find Path to Excel File");
+                }
+
+                return (_reader == null || _reader.Path != View.ExcelPath) ? new MockExcelReader(View.ExcelPath) : _reader;
+            }
+        }
 
         public Presenter(IView view)
         {
@@ -22,17 +37,18 @@ namespace WizardDemo.Presenter
         private void InitEvent()
         {
             View.OnReadingExcel += View_OnReadingExcel;
-            View.OnStoreTable += View_OnStoreTable;
+            View.OnStoreDb += View_OnStoreDb;
         }
 
-        private void View_OnStoreTable(object sender, EventArgs e)
+        private void View_OnStoreDb(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
 
         private void View_OnReadingExcel(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ExcelTable = ExcelReader.ReadExcel();
+            View.Zuordnungstable = ExcelReader.GetColumnInfos();
         }
 
         public IView View { get; }

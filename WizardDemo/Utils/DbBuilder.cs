@@ -44,13 +44,19 @@ namespace WizardDemo.Utils
         public void CreateTable()
         {
             var createStatement = $"CREATE TABLE {TableName}";
-            var headers = ColumnInfos
+            var headers = GetColumInfoWithoutCoordinates()
                 .Select(info => $"{info.SourceName} {info.DataType.GetSqlDataType()}")
                 .Aggregate((current, next) => $"{current}, {next}");
 
             var query = $"{createStatement} ({headers})";
 
             ExecuteQuery(query);
+        }
+
+        private IEnumerable<ColumnInfo> GetColumInfoWithoutCoordinates()
+        {
+            return ColumnInfos
+                            .Where(info => info.SourceName != XCoordinateHeader && info.SourceName != YCoordinateHeader);
         }
 
         private void ExecuteQuery(string query)
@@ -72,7 +78,7 @@ namespace WizardDemo.Utils
 
         public void InsertData()
         {
-            var headerList = ColumnInfos
+            var headerList = GetColumInfoWithoutCoordinates()
                 .Select(info => info.SourceName);
 
             var headers = string.Join(",", headerList);

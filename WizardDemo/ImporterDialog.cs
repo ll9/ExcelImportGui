@@ -43,12 +43,19 @@ namespace WizardDemo
         public string ExcelPath { get => ExcelPathBox.Text; set => throw new NotImplementedException(); }
         public string XCoordinateHeader { get => XBox.Text; set => throw new NotImplementedException(); }
         public string YCoordinateHeader { get => YBox.Text; set => throw new NotImplementedException(); }
-        public string Projection { get =>ProjectionBox.Text; set => throw new NotImplementedException(); }
+        public string Projection { get => ProjectionBox.Text; set => throw new NotImplementedException(); }
 
         public object MappingDataSource => throw new NotImplementedException();
         public object XDataSource { get => throw new NotImplementedException(); set => XBox.DataSource = value; }
         public object YDataSource { get => throw new NotImplementedException(); set => YBox.DataSource = value; }
-        public object ProjectionDataSource { get => throw new NotImplementedException(); set => ProjectionBox.DataSource = value; }
+        public object ProjectionDataSource
+        {
+            get => throw new NotImplementedException(); set
+            {
+                ProjectionBox.DataSource = value;
+                ProjectionBox.DisplayMember = "BoxText";
+            }
+        }
 
         public event EventHandler OnReadingExcel;
         public event EventHandler OnStoreDb;
@@ -56,7 +63,7 @@ namespace WizardDemo
 
         private void ExcelPathButton_Click(object sender, EventArgs e)
         {
-            using (var dialog = new OpenFileDialog() { Filter = "Excel (*.xlsx) | *.xlsx"})
+            using (var dialog = new OpenFileDialog() { Filter = "Excel (*.xlsx) | *.xlsx" })
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {

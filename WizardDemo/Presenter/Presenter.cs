@@ -76,6 +76,12 @@ namespace WizardDemo.Presenter
 
             View.XDataSource = possibleCoordinates;
             View.YDataSource = possibleCoordinates;
+            View.ProjectionDataSource = new[]
+            {
+                new ProjectionViewModel("ESPG:25832", "+proj=utm +zone=32 +ellps=GRS80 +units=m +no_defs "),
+                new ProjectionViewModel("ESPG:25833", "+proj=utm +zone=33 +ellps=GRS80 +units=m +no_defs "),
+                new ProjectionViewModel("ESPG:25834", "+proj=utm +zone=34 +ellps=GRS80 +units=m +no_defs "),
+            };
         }
 
         private List<string> GetPossibleCoordinates()

@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="Models\ColumnInfo.cs" />
     <Compile Include="Models\DataType.cs" />
+    <Compile Include="Models\ProjectionViewModel.cs" />
     <Compile Include="Presenter\Presenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

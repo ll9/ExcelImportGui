@@ -45,6 +45,11 @@ namespace WizardDemo
         public string YCoordinateHeader { get => YBox.Text; set => throw new NotImplementedException(); }
         public string Projection { get =>ProjectionBox.Text; set => throw new NotImplementedException(); }
 
+        public object MappingDataSource => throw new NotImplementedException();
+        public object XDataSource { get => throw new NotImplementedException(); set => XBox.DataSource = value; }
+        public object YDataSource { get => throw new NotImplementedException(); set => YBox.DataSource = value; }
+        public object ProjectionDataSource { get => throw new NotImplementedException(); set => ProjectionBox.DataSource = value; }
+
         public event EventHandler OnReadingExcel;
         public event EventHandler OnStoreDb;
 

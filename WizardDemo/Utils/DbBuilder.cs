@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
@@ -8,6 +9,8 @@ namespace WizardDemo.Utils
 {
     public class DbBuilder : IDbBuilder
     {
+        private const string GeometryColumn = "geometry";
+
         public DbBuilder(string dbPath, string tableName, DataTable data, List<ColumnInfo> columnInfos, string xCoordinateHeader, string yCoordinateHeader, string projection)
         {
             DbPath = dbPath;
@@ -51,6 +54,14 @@ namespace WizardDemo.Utils
             var query = $"{createStatement} ({headers})";
 
             ExecuteQuery(query);
+            AddGeometry();
+        }
+
+        private void AddGeometry()
+        {
+            // Init Spatial Metadata
+            ExecuteQuery("SELECT InitSpatialMetaData(1)");
+            ExecuteQuery($"SELECT AddGeometryColumn('{TableName}', '{GeometryColumn}', 4326, 'POINT', 'XY')");
         }
 
         private IEnumerable<ColumnInfo> GetColumInfoWithoutCoordinates()

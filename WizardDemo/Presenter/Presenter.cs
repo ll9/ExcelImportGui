@@ -71,6 +71,19 @@ namespace WizardDemo.Presenter
         {
             ExcelTable = ExcelReader.ReadExcel();
             ColumnInfos = ExcelReader.GetColumnInfos();
+
+            List<string> possibleCoordinates = GetPossibleCoordinates();
+
+            View.XDataSource = possibleCoordinates;
+            View.YDataSource = possibleCoordinates;
+        }
+
+        private List<string> GetPossibleCoordinates()
+        {
+            return ColumnInfos
+                .Where(info => info.DataType == DataType.System_Double)
+                .Select(info => info.SourceName)
+                .ToList();
         }
 
         public IView View { get; }

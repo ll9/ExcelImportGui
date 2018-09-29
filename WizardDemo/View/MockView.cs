@@ -12,6 +12,12 @@ namespace WizardDemo.View
         public string Projection { get => "+proj=utm +zone=32 +ellps=GRS80 +units=m +no_defs "; set => throw new NotImplementedException(); }
         public BindingList<ColumnInfo> Zuordnungstable { get; set; }
 
+        public object MappingDataSource => throw new NotImplementedException();
+
+        public object XDataSource { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public object YDataSource { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public object ProjectionDataSource { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public event EventHandler OnReadingExcel;
         public event EventHandler OnStoreDb;
 

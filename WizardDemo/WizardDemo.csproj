@@ -96,6 +96,7 @@
       <DependentUpon>ImporterDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ColumnInfo.cs" />
+    <Compile Include="Models\CoordinatesViewModel.cs" />
     <Compile Include="Models\DataType.cs" />
     <Compile Include="Models\ProjectionViewModel.cs" />
     <Compile Include="Presenter\Presenter.cs" />

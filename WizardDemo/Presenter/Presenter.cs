@@ -96,11 +96,11 @@ namespace WizardDemo.Presenter
             };
         }
 
-        private List<string> GetPossibleCoordinates()
+        private List<CoordinatesViewModel> GetPossibleCoordinates()
         {
             return ColumnInfos
                 .Where(info => DataType.Numeric.HasFlag(info.DataType))
-                .Select(info => info.SourceName)
+                .Select(info => new CoordinatesViewModel(info.SourceName, info.DestinationName))
                 .ToList();
         }
 

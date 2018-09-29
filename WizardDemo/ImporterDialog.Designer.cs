@@ -207,7 +207,7 @@
         #endregion
 
         private AeroWizard.WizardControl ImportWizard;
-        private AeroWizard.WizardPage Import;
+        private AeroWizard.WizardPage ImportDialog;
         private AeroWizard.WizardPage Mapping;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button ExcelPathButton;

@@ -18,7 +18,7 @@ namespace WizardDemo
         public ImporterDialog()
         {
             InitializeComponent();
-            Import.AllowNext = false;
+            ImportPage.AllowNext = false;
             InitEvents();
 
 
@@ -32,8 +32,8 @@ namespace WizardDemo
 
         private void InitEvents()
         {
-            Import.Commit += Import_Commit;
-            Mapping.Commit += (sender, e) => OnStoreDb(sender, e);
+            ImportPage.Commit += Import_Commit;
+            MappingPage.Commit += (sender, e) => OnStoreDb(sender, e);
         }
 
 
@@ -43,13 +43,29 @@ namespace WizardDemo
         }
 
         public string ExcelPath { get => ExcelPathBox.Text; set => throw new NotImplementedException(); }
-        public string XCoordinateHeader { get => XBox.Text; set => throw new NotImplementedException(); }
-        public string YCoordinateHeader { get => YBox.Text; set => throw new NotImplementedException(); }
+        public string XCoordinateHeader { get => XBox.SelectedValue.ToString(); set => throw new NotImplementedException(); }
+        public string YCoordinateHeader { get => YBox.SelectedValue.ToString(); set => throw new NotImplementedException(); }
         public string Projection { get => ProjectionBox.SelectedValue.ToString(); set => throw new NotImplementedException(); }
 
         public object MappingDataSource => throw new NotImplementedException();
-        public object XDataSource { get => throw new NotImplementedException(); set => XBox.DataSource = value; }
-        public object YDataSource { get => throw new NotImplementedException(); set => YBox.DataSource = value; }
+        public object XDataSource
+        {
+            get => throw new NotImplementedException(); set
+            {
+                XBox.DataSource = value;
+                XBox.ValueMember = "Source";
+                XBox.DisplayMember = "Destination";
+            }
+        }
+        public object YDataSource
+        {
+            get => throw new NotImplementedException(); set
+            {
+                YBox.DataSource = value;
+                YBox.ValueMember = "Source";
+                YBox.DisplayMember = "Destination";
+            }
+        }
         public object ProjectionDataSource
         {
             get => throw new NotImplementedException(); set
@@ -71,7 +87,7 @@ namespace WizardDemo
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     ExcelPathBox.Text = dialog.FileName;
-                    Import.AllowNext = true;
+                    ImportPage.AllowNext = true;
                 }
             }
         }

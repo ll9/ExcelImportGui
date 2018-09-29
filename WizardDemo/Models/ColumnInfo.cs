@@ -14,10 +14,12 @@ namespace WizardDemo.Models
             SourceName = sourceName;
             DestinationName = sourceName;
             DataType = dataType;
+            Keep = true;
         }
 
         public string SourceName { get; set; }
         public string DestinationName { get; set; }
         public DataType DataType { get; set; }
+        public bool Keep { get; set; }
     }
 }

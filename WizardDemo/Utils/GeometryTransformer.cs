@@ -19,8 +19,10 @@ namespace WizardDemo.Utils
 
             Reproject.ReprojectPoints(xy, z, soureProjection, destinationProjection, 0, 1);
 
+            var longitude = xy[0].ToString().Replace(",", ".");
+            var latitude = xy[1].ToString().Replace(",", ".");
 
-            return $"GeomFromText('POINT({xy[0]} {xy[1]})', 4326)";
+            return $"GeomFromText('POINT({longitude} {latitude})', 4326)";
         }
     }
 }

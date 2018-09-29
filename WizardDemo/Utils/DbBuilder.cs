@@ -90,10 +90,12 @@ namespace WizardDemo.Utils
         public void InsertData()
         {
             var headerList = GetColumInfoWithoutCoordinates()
-                .Select(info => info.SourceName)
-                .Concat(new[] { GeometryColumn });
+                .Select(info => info.SourceName);
 
-            var headers = string.Join(",", headerList);
+            var headers = headerList
+                .Concat(new[] { GeometryColumn })
+                .Aggregate((current, next) => $"{current}, {next}");
+
             var headerParameters = headerList
                 .Select(value => $"@{value}")
                 .Aggregate((current, next) => $"{current}, {next}");
@@ -104,7 +106,7 @@ namespace WizardDemo.Utils
                 var x = double.Parse(Data.Rows[i][XCoordinateHeader].ToString());
                 var y = double.Parse(Data.Rows[i][YCoordinateHeader].ToString());
                 var geomText = GeometryTransformer.GetGeomFromTextString(x, y, Projection);
-                var query = $"INSERT INTO {TableName}({headers}) VALUES ({headerParameters},{geomText})";
+                var query = $"INSERT INTO {TableName}({headers}) VALUES ({headerParameters}, {geomText})";
 
 
                 using (var command = new SQLiteCommand())

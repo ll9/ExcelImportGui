@@ -44,7 +44,21 @@ namespace WizardDemo.Presenter
 
         private void View_OnStoreDb(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            const string DbPath = @"C:\Users\Lenovo G50-45\Desktop\exceltestfiles\temp.sqlite";
+
+            if (File.Exists(DbPath))
+            {
+                File.Delete(DbPath);
+            }
+
+
+            var dbBuilder = new DbBuilder(DbPath,
+                    "LDS_FEATURES",
+                    ExcelTable,
+                    View.Zuordnungstable.ToList());
+
+            dbBuilder.CreateTable();
+            dbBuilder.InsertData();
         }
 
         private void View_OnReadingExcel(object sender, EventArgs e)

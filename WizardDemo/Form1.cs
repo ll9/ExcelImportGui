@@ -22,6 +22,7 @@ namespace WizardDemo
             var presenter = new Presenter.Presenter(view);
 
             view.ReadExcel();
+            view.StoreDb();
         }
     }
 }

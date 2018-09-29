@@ -36,6 +36,7 @@ namespace WizardDemo.Utils
                 var connection = new SQLiteConnection($"Data Source={DbPath}");
                 connection.Open();
                 connection.EnableExtensions(true);
+                connection.LoadExtension("mod_spatialite");
                 return connection;
             }
         }

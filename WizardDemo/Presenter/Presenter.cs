@@ -52,10 +52,15 @@ namespace WizardDemo.Presenter
             }
 
 
-            var dbBuilder = new DbBuilder(DbPath,
-                    "LDS_FEATURES",
-                    ExcelTable,
-                    View.Zuordnungstable.ToList());
+            var dbBuilder = new DbBuilder(
+                DbPath,
+                "LDS_FEATURES",
+                ExcelTable,
+                View.Zuordnungstable.ToList(),
+                View.XCoordinateHeader,
+                View.YCoordinateHeader,
+                View.Projection
+                );
 
             dbBuilder.CreateTable();
             dbBuilder.InsertData();

@@ -8,12 +8,15 @@ namespace WizardDemo.Utils
 {
     public class DbBuilder : IDbBuilder
     {
-        public DbBuilder(string dbPath, string tableName, DataTable data, List<ColumnInfo> columnInfos)
+        public DbBuilder(string dbPath, string tableName, DataTable data, List<ColumnInfo> columnInfos, string xCoordinateHeader, string yCoordinateHeader, string projection)
         {
             DbPath = dbPath;
             TableName = tableName;
             Data = data;
             ColumnInfos = columnInfos;
+            XCoordinateHeader = xCoordinateHeader;
+            YCoordinateHeader = yCoordinateHeader;
+            Projection = projection;
         }
 
         #region //ClassProperties
@@ -21,6 +24,9 @@ namespace WizardDemo.Utils
         public string TableName { get; }
         public DataTable Data { get; }
         public List<ColumnInfo> ColumnInfos { get; }
+        public string XCoordinateHeader { get; }
+        public string YCoordinateHeader { get; }
+        public string Projection { get; }
         #endregion
 
         public SQLiteConnection Connection

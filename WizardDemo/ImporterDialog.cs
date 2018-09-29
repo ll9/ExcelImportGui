@@ -44,7 +44,6 @@ namespace WizardDemo
         public string XCoordinateHeader { get => XBox.Text; set => throw new NotImplementedException(); }
         public string YCoordinateHeader { get => YBox.Text; set => throw new NotImplementedException(); }
         public string Projection { get =>ProjectionBox.Text; set => throw new NotImplementedException(); }
-        public BindingList<ColumnInfo> Zuordnungstable { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public event EventHandler OnReadingExcel;
         public event EventHandler OnStoreDb;

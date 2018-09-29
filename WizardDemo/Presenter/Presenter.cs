@@ -15,6 +15,7 @@ namespace WizardDemo.Presenter
     public class Presenter
     {
         public DataTable ExcelTable { get; set; }
+        public List<ColumnInfo> ColumnInfos { get; set; }
         private IExcelReader _reader;
         public IExcelReader ExcelReader
         {
@@ -56,7 +57,7 @@ namespace WizardDemo.Presenter
                 DbPath,
                 "LDS_FEATURES",
                 ExcelTable,
-                View.Zuordnungstable.ToList(),
+                ColumnInfos,
                 View.XCoordinateHeader,
                 View.YCoordinateHeader,
                 View.Projection
@@ -69,7 +70,7 @@ namespace WizardDemo.Presenter
         private void View_OnReadingExcel(object sender, EventArgs e)
         {
             ExcelTable = ExcelReader.ReadExcel();
-            View.Zuordnungstable = new BindingList<ColumnInfo>(ExcelReader.GetColumnInfos());
+            ColumnInfos = ExcelReader.GetColumnInfos();
         }
 
         public IView View { get; }

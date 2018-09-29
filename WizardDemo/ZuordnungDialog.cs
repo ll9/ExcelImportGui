@@ -20,7 +20,12 @@ namespace WizardDemo
 
         public object ZuordnungDataSource
         {
-            get => throw new NotImplementedException(); set
+            get
+            {
+                return columnInfoDataGridView.DataSource;
+            }
+
+            set
             {
                 columnInfoDataGridView.DataSource = value;
             }

@@ -48,7 +48,7 @@ namespace WizardDemo.Utils
         {
             var createStatement = $"CREATE TABLE {TableName}";
             var headers = GetColumInfoWithoutCoordinates()
-                .Select(info => $"{info.SourceName} {info.DataType.GetSqlDataType()}")
+                .Select(info => $"{info.DestinationName} {info.DataType.GetSqlDataType()}")
                 .Aggregate((current, next) => $"{current}, {next}");
 
             var query = $"{createStatement} ({headers})";
@@ -90,7 +90,7 @@ namespace WizardDemo.Utils
         public void InsertData()
         {
             var headerList = GetColumInfoWithoutCoordinates()
-                .Select(info => info.SourceName);
+                .Select(info => info.DestinationName);
 
             var headers = headerList
                 .Concat(new[] { GeometryColumn })
@@ -118,7 +118,7 @@ namespace WizardDemo.Utils
                         var cellValue = Data.Rows[i][info.SourceName].ToString();
                         var dynamicValue = info.DataType.GetDynamicValue(cellValue);
 
-                        command.Parameters.AddWithValue($"@{info.SourceName}", dynamicValue);
+                        command.Parameters.AddWithValue($"@{info.DestinationName}", dynamicValue);
                     }
                     ExecuteQuery(command);
                 }

@@ -47,10 +47,13 @@ namespace WizardDemo.Presenter
         private void View_OnOpenZuordnungDialog(object sender, EventArgs e)
         {
             var dialog = new ZuordnungDialog();
-            dialog.ZuordnungDataSource = ColumnInfos;
+            // Copy Columninfos in order to make CancelButton undo all changes
+            dialog.ZuordnungDataSource = new List<ColumnInfo>(ColumnInfos);
 
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                // Apply Changes
+                ColumnInfos = new List<ColumnInfo>(dialog.ZuordnungDataSource as List<ColumnInfo>);
                 View.XDataSource = GetPossibleCoordinates();
                 View.YDataSource = GetPossibleCoordinates();
             }

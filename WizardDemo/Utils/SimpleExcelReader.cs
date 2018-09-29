@@ -50,7 +50,9 @@ namespace WizardDemo.Utils
 
                 //Loop through the Worksheet rows.
                 bool firstRow = true;
-                foreach (IXLRow row in workSheet.Rows())
+                var startIndex = workSheet.FirstRowUsed().FirstCellUsed().Address.ColumnNumber;
+                var endIndex = workSheet.FirstRowUsed().LastCellUsed().Address.ColumnNumber;
+                foreach (IXLRow row in workSheet.RowsUsed())
                 {
                     //Use the first row to add columns to DataTable.
                     if (firstRow)
@@ -67,7 +69,7 @@ namespace WizardDemo.Utils
                         table.Rows.Add();
                         int i = 0;
 
-                        foreach (IXLCell cell in row.Cells(row.FirstCellUsed().Address.ColumnNumber, row.LastCellUsed().Address.ColumnNumber))
+                        foreach (IXLCell cell in row.Cells(startIndex, endIndex))
                         {
                             table.Rows[table.Rows.Count - 1][i] = cell.Value.ToString();
                             i++;

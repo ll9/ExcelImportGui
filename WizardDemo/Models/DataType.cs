@@ -2,11 +2,11 @@
 {
     public enum DataType
     {
-        _bool = 1,
-        _int = 2,
-        _long = 4,
-        _double = 8,
-        _dateTime = 16,
-        _string = 32
+        System_Boolean = 1,
+        System_Int32 = 2,
+        System_Int64 = 4,
+        System_Double = 8,
+        System_DateTime = 16,
+        System_String = 32
     }
 }

@@ -23,16 +23,16 @@ namespace WizardDemo.Utils
             Path = path;
         }
 
-        public string Path { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Path { get; set; }
 
         public List<ColumnInfo> GetColumnInfos()
         {
-            throw new NotImplementedException();
+            return new List<ColumnInfo>();
         }
 
         public DataTable ReadExcel()
         {
-            throw new NotImplementedException();
+            return new DataTable();
         }
     }
 }

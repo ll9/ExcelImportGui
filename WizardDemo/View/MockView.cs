@@ -14,5 +14,14 @@ namespace WizardDemo.View
 
         public event EventHandler OnReadingExcel;
         public event EventHandler OnStoreDb;
+
+        public void ReadExcel()
+        {
+            OnReadingExcel(this, null);
+        }
+        public void StoreDb()
+        {
+            OnStoreDb(this, null);
+        }
     }
 }

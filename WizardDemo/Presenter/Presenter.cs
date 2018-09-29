@@ -51,7 +51,6 @@ namespace WizardDemo.Presenter
         {
             ExcelTable = ExcelReader.ReadExcel();
             View.Zuordnungstable = new BindingList<ColumnInfo>(ExcelReader.GetColumnInfos());
-
         }
 
         public IView View { get; }

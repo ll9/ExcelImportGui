@@ -13,6 +13,7 @@ namespace WizardDemo
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             InitializeComponent();
@@ -20,6 +21,7 @@ namespace WizardDemo
             var view = new MockView();
             var presenter = new Presenter.Presenter(view);
 
+            view.ReadExcel();
         }
     }
 }

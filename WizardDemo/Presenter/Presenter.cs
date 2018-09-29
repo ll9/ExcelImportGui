@@ -73,7 +73,7 @@ namespace WizardDemo.Presenter
                 DbPath,
                 "LDS_FEATURES",
                 ExcelTable,
-                ColumnInfos,
+                ColumnInfos.Where(info => info.Keep).ToList(),
                 View.XCoordinateHeader,
                 View.YCoordinateHeader,
                 View.Projection

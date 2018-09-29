@@ -25,7 +25,7 @@ namespace WizardDemo.Presenter
                     throw new FileNotFoundException("Could not find Path to Excel File");
                 }
 
-                return (_reader == null || _reader.Path != View.ExcelPath) ? new MockExcelReader(View.ExcelPath) : _reader;
+                return (_reader == null || _reader.Path != View.ExcelPath) ? new SimpleExcelReader(View.ExcelPath) : _reader;
             }
         }
 
@@ -54,7 +54,5 @@ namespace WizardDemo.Presenter
         }
 
         public IView View { get; }
-
-
     }
 }

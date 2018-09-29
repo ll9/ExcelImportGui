@@ -9,10 +9,10 @@ namespace WizardDemo.Models
 
     public class ColumnInfo
     {
-        public ColumnInfo(string sourceName, string destinationName, DataType dataType)
+        public ColumnInfo(string sourceName, DataType dataType)
         {
             SourceName = sourceName;
-            DestinationName = destinationName;
+            DestinationName = sourceName;
             DataType = dataType;
         }
 

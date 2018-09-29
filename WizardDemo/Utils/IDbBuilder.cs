@@ -62,18 +62,49 @@ namespace WizardDemo.Utils
 
         private void ExecuteQuery(string query)
         {
+            using (var command = new SQLiteCommand(query))
+            {
+                ExecuteQuery(command);
+            }
+        }
+
+        private void ExecuteQuery(SQLiteCommand command)
+        {
             using (var connection = Connection)
             {
-                using (var command = new SQLiteCommand(query, connection))
-                {
-                    command.ExecuteNonQuery();
-                }
+                command.Connection = Connection;
+                command.ExecuteNonQuery();
             }
         }
 
         public void InsertData()
         {
-            throw new NotImplementedException();
+            var headerList = ColumnInfos
+                .Select(info => info.SourceName);
+
+            var headers = string.Join(",", headerList);
+            var headerParameters = headerList
+                .Select(value => $"@{value}")
+                .Aggregate((current, next) => $"{current}, {next}");
+
+            var query = $"INSERT INTO {TableName}({headers}) VALUES ({headerParameters})";
+
+            for (int i = 0; i < Data.Rows.Count; i++)
+            {
+                using (var command = new SQLiteCommand())
+                {
+                    command.CommandText = query;
+
+                    foreach (var info in ColumnInfos)
+                    {
+                        var cellValue = Data.Rows[i][info.SourceName].ToString();
+                        var dynamicValue = info.DataType.GetDynamicValue(cellValue);
+
+                        command.Parameters.AddWithValue($"@{info.SourceName}", dynamicValue);
+                    }
+                    ExecuteQuery(command);
+                }
+            }
         }
     }
 }

@@ -19,13 +19,25 @@ namespace WizardDemo
         {
             InitializeComponent();
             Import.AllowNext = false;
-            
+            InitEvents();
 
-            var view = new MockView();
-            var presenter = new Presenter.Presenter(view);
 
-            view.ReadExcel();
-            view.StoreDb();
+            //var view = new MockView();
+            //var presenter = new Presenter.Presenter(view);
+            var presenter = new Presenter.Presenter(this);
+
+            //view.ReadExcel();
+            //view.StoreDb();
+        }
+
+        private void InitEvents()
+        {
+            Import.Commit += Import_Commit;
+        }
+
+        private void Import_Commit(object sender, AeroWizard.WizardPageConfirmEventArgs e)
+        {
+            OnReadingExcel(this, e);
         }
 
         public string ExcelPath { get => ExcelPathBox.Text; set => throw new NotImplementedException(); }

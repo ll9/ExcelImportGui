@@ -15,6 +15,10 @@ namespace WizardDemo.View
         string XCoordinateHeader { get; set; }
         string YCoordinateHeader { get; set; }
         string Projection { get; set; }
+        object MappingDataSource { get; }
+        object XDataSource { get; set; }
+        object YDataSource { get; set; }
+        object ProjectionDataSource { get; set; }
 
         event EventHandler OnReadingExcel;
         event EventHandler OnStoreDb;

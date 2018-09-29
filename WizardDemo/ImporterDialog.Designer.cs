@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.wizardControl1 = new AeroWizard.WizardControl();
+            this.ImportWizard = new AeroWizard.WizardControl();
             this.Import = new AeroWizard.WizardPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ExcelPathButton = new System.Windows.Forms.Button();
@@ -42,25 +42,25 @@
             this.XBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.wizardControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImportWizard)).BeginInit();
             this.Import.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.Mapping.SuspendLayout();
             this.SuspendLayout();
             // 
-            // wizardControl1
+            // ImportWizard
             // 
-            this.wizardControl1.BackColor = System.Drawing.Color.White;
-            this.wizardControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wizardControl1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.wizardControl1.Location = new System.Drawing.Point(0, 0);
-            this.wizardControl1.Name = "wizardControl1";
-            this.wizardControl1.Pages.Add(this.Import);
-            this.wizardControl1.Pages.Add(this.Mapping);
-            this.wizardControl1.Size = new System.Drawing.Size(484, 450);
-            this.wizardControl1.TabIndex = 0;
-            this.wizardControl1.Text = "ExcelImport";
-            this.wizardControl1.Title = "ExcelImport";
+            this.ImportWizard.BackColor = System.Drawing.Color.White;
+            this.ImportWizard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ImportWizard.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ImportWizard.Location = new System.Drawing.Point(0, 0);
+            this.ImportWizard.Name = "ImportWizard";
+            this.ImportWizard.Pages.Add(this.Import);
+            this.ImportWizard.Pages.Add(this.Mapping);
+            this.ImportWizard.Size = new System.Drawing.Size(484, 450);
+            this.ImportWizard.TabIndex = 0;
+            this.ImportWizard.Text = "ExcelImport";
+            this.ImportWizard.Title = "ExcelImport";
             // 
             // Import
             // 
@@ -90,6 +90,7 @@
             this.ExcelPathButton.TabIndex = 2;
             this.ExcelPathButton.Text = "Durchsuchen...";
             this.ExcelPathButton.UseVisualStyleBackColor = true;
+            this.ExcelPathButton.Click += new System.EventHandler(this.ExcelPathButton_Click);
             // 
             // ExcelPathBox
             // 
@@ -189,10 +190,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 450);
-            this.Controls.Add(this.wizardControl1);
+            this.Controls.Add(this.ImportWizard);
             this.Name = "ImporterDialog";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.wizardControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImportWizard)).EndInit();
             this.Import.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -204,7 +205,7 @@
 
         #endregion
 
-        private AeroWizard.WizardControl wizardControl1;
+        private AeroWizard.WizardControl ImportWizard;
         private AeroWizard.WizardPage Import;
         private AeroWizard.WizardPage Mapping;
         private System.Windows.Forms.GroupBox groupBox1;

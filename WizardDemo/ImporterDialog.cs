@@ -18,6 +18,8 @@ namespace WizardDemo
         public ImporterDialog()
         {
             InitializeComponent();
+            Import.AllowNext = false;
+            
 
             var view = new MockView();
             var presenter = new Presenter.Presenter(view);
@@ -34,5 +36,18 @@ namespace WizardDemo
 
         public event EventHandler OnReadingExcel;
         public event EventHandler OnStoreDb;
+
+
+        private void ExcelPathButton_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new OpenFileDialog() { Filter = "Excel (*.xlsx) | *.xlsx"})
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    ExcelPathBox.Text = dialog.FileName;
+                    Import.AllowNext = true;
+                }
+            }
+        }
     }
 }

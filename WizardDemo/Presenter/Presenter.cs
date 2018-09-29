@@ -56,6 +56,7 @@ namespace WizardDemo.Presenter
                 ColumnInfos = new List<ColumnInfo>(dialog.ZuordnungDataSource as List<ColumnInfo>);
                 View.XDataSource = GetPossibleCoordinates();
                 View.YDataSource = GetPossibleCoordinates();
+                SuggestCoordinates();
             }
         }
 
@@ -91,12 +92,51 @@ namespace WizardDemo.Presenter
 
             View.XDataSource = GetPossibleCoordinates();
             View.YDataSource = GetPossibleCoordinates();
+            SuggestCoordinates();
             View.ProjectionDataSource = new[]
             {
                 new ProjectionViewModel("ESPG:25832", "+proj=utm +zone=32 +ellps=GRS80 +units=m +no_defs "),
                 new ProjectionViewModel("ESPG:25833", "+proj=utm +zone=33 +ellps=GRS80 +units=m +no_defs "),
                 new ProjectionViewModel("ESPG:25834", "+proj=utm +zone=34 +ellps=GRS80 +units=m +no_defs "),
             };
+        }
+
+        private void SuggestCoordinates()
+        {
+            var possibleValues = GetPossibleCoordinates();
+            var xSuggestions = new[]
+            {
+                "x",
+                "rw",
+                "rechtswert",
+                "lon",
+                "longitude"
+            };
+            var ySuggestions = new[]
+            {
+                "y",
+                "hw",
+                "hochwert",
+                "lat",
+                "latitude"
+            };
+
+            foreach (var coordinate in possibleValues)
+            {
+                if (xSuggestions.Contains(coordinate.Source.ToLower()))
+                {
+                    View.SetDefaultXHeader(coordinate);
+                    break;
+                }
+            }
+            foreach (var coordinate in possibleValues)
+            {
+                if (ySuggestions.Contains(coordinate.Source.ToLower()))
+                {
+                    View.SetDefaultYHeader(coordinate);
+                    break;
+                }
+            }
         }
 
         private List<CoordinatesViewModel> GetPossibleCoordinates()

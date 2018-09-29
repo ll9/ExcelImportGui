@@ -23,5 +23,8 @@ namespace WizardDemo.View
         event EventHandler OnReadingExcel;
         event EventHandler OnStoreDb;
         event EventHandler OnOpenZuordnungDialog;
+
+        void SetDefaultXHeader(CoordinatesViewModel item);
+        void SetDefaultYHeader(CoordinatesViewModel item);
     }
 }

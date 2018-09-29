@@ -96,5 +96,15 @@ namespace WizardDemo
         {
             OnOpenZuordnungDialog(sender, e);
         }
+
+        public void SetDefaultXHeader(CoordinatesViewModel item)
+        {
+            XBox.SelectedIndex = XBox.FindStringExact(item.Destination);
+        }
+
+        public void SetDefaultYHeader(CoordinatesViewModel item)
+        {
+            YBox.SelectedIndex = YBox.FindStringExact(item.Destination);
+        }
     }
 }

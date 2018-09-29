@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WizardDemo.Models
 {
-    class CoordinatesViewModel
+    public class CoordinatesViewModel
     {
         public CoordinatesViewModel(string source, string destination)
         {

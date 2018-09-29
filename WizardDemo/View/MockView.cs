@@ -26,9 +26,21 @@ namespace WizardDemo.View
         {
             OnReadingExcel(this, null);
         }
-        public void StoreDb()
+
+        public void SetDefaultXHeader()
         {
-            OnStoreDb(this, null);
+            throw new NotImplementedException();
         }
+
+        public void SetDefaultXHeader(CoordinatesViewModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetDefaultYHeader(CoordinatesViewModel value)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

@@ -8,7 +8,7 @@ using WizardDemo.Models;
 
 namespace WizardDemo.Utils
 {
-    interface IDbBuilder
+    public interface IDbBuilder
     {
         string DbPath { get; }
         string TableName { get; }
@@ -17,5 +17,33 @@ namespace WizardDemo.Utils
 
         void CreateTable();
         void InsertData();
+    }
+
+    public class DbBuilder : IDbBuilder
+    {
+        public DbBuilder(string dbPath, string tableName, DataTable data, List<ColumnInfo> columnInfos)
+        {
+            DbPath = dbPath;
+            TableName = tableName;
+            Data = data;
+            ColumnInfos = columnInfos;
+        }
+
+        public string DbPath { get; }
+        public string TableName { get; }
+        public DataTable Data { get; }
+        public List<ColumnInfo> ColumnInfos { get; }
+
+        public void CreateTable()
+        {
+            var query = $"CREATE TABLE {TableName}";
+
+            throw new NotImplementedException();
+        }
+
+        public void InsertData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

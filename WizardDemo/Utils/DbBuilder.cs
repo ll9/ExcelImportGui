@@ -90,11 +90,13 @@ namespace WizardDemo.Utils
         public void InsertData()
         {
             var headerList = GetColumInfoWithoutCoordinates()
-                .Select(info => info.SourceName);
+                .Select(info => info.SourceName)
+                .Concat(new[] { GeometryColumn });
 
             var headers = string.Join(",", headerList);
             var headerParameters = headerList
                 .Select(value => $"@{value}")
+                .Concat(new[] { GeometryColumn })
                 .Aggregate((current, next) => $"{current}, {next}");
 
             var query = $"INSERT INTO {TableName}({headers}) VALUES ({headerParameters})";

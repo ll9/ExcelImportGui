@@ -96,13 +96,17 @@ namespace WizardDemo.Utils
             var headers = string.Join(",", headerList);
             var headerParameters = headerList
                 .Select(value => $"@{value}")
-                .Concat(new[] { GeometryColumn })
                 .Aggregate((current, next) => $"{current}, {next}");
 
-            var query = $"INSERT INTO {TableName}({headers}) VALUES ({headerParameters})";
 
             for (int i = 0; i < Data.Rows.Count; i++)
             {
+                var x = double.Parse(Data.Rows[i][XCoordinateHeader].ToString());
+                var y = double.Parse(Data.Rows[i][YCoordinateHeader].ToString());
+                var geomText = GeometryTransformer.GetGeomFromTextString(x, y, Projection);
+                var query = $"INSERT INTO {TableName}({headers}) VALUES ({headerParameters},{geomText})";
+
+
                 using (var command = new SQLiteCommand())
                 {
                     command.CommandText = query;

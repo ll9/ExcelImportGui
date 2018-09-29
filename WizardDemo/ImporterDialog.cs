@@ -33,7 +33,9 @@ namespace WizardDemo
         private void InitEvents()
         {
             Import.Commit += Import_Commit;
+            Mapping.Commit += (sender, e) => OnStoreDb(sender, e);
         }
+
 
         private void Import_Commit(object sender, AeroWizard.WizardPageConfirmEventArgs e)
         {
@@ -43,7 +45,7 @@ namespace WizardDemo
         public string ExcelPath { get => ExcelPathBox.Text; set => throw new NotImplementedException(); }
         public string XCoordinateHeader { get => XBox.Text; set => throw new NotImplementedException(); }
         public string YCoordinateHeader { get => YBox.Text; set => throw new NotImplementedException(); }
-        public string Projection { get => ProjectionBox.Text; set => throw new NotImplementedException(); }
+        public string Projection { get => ProjectionBox.SelectedValue.ToString(); set => throw new NotImplementedException(); }
 
         public object MappingDataSource => throw new NotImplementedException();
         public object XDataSource { get => throw new NotImplementedException(); set => XBox.DataSource = value; }
@@ -54,6 +56,7 @@ namespace WizardDemo
             {
                 ProjectionBox.DataSource = value;
                 ProjectionBox.DisplayMember = "BoxText";
+                ProjectionBox.ValueMember = "Proj4String";
             }
         }
 

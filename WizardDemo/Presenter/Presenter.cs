@@ -72,10 +72,9 @@ namespace WizardDemo.Presenter
             ExcelTable = ExcelReader.ReadExcel();
             ColumnInfos = ExcelReader.GetColumnInfos();
 
-            List<string> possibleCoordinates = GetPossibleCoordinates();
 
-            View.XDataSource = possibleCoordinates;
-            View.YDataSource = possibleCoordinates;
+            View.XDataSource = GetPossibleCoordinates();
+            View.YDataSource = GetPossibleCoordinates();
             View.ProjectionDataSource = new[]
             {
                 new ProjectionViewModel("ESPG:25832", "+proj=utm +zone=32 +ellps=GRS80 +units=m +no_defs "),
@@ -87,7 +86,7 @@ namespace WizardDemo.Presenter
         private List<string> GetPossibleCoordinates()
         {
             return ColumnInfos
-                .Where(info => info.DataType == DataType.System_Double)
+                .Where(info => DataType.Numeric.HasFlag(info.DataType))
                 .Select(info => info.SourceName)
                 .ToList();
         }

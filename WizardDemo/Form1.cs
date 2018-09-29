@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WizardDemo.View;
 
 namespace WizardDemo
 {
@@ -15,6 +16,10 @@ namespace WizardDemo
         public Form1()
         {
             InitializeComponent();
+
+            var view = new MockView();
+            var presenter = new Presenter.Presenter(view);
+
         }
     }
 }

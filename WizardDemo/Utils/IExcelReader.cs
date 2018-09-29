@@ -8,7 +8,7 @@ using WizardDemo.Models;
 
 namespace WizardDemo.Utils
 {
-    interface IExcelReader
+    public interface IExcelReader
     {
         string Path { get; set; }
 

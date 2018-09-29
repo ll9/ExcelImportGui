@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WizardDemo.Models;
 using WizardDemo.Utils;
 using WizardDemo.View;
 
 namespace WizardDemo.Presenter
 {
-    class Presenter
+    public class Presenter
     {
         public DataTable ExcelTable { get; set; }
         private IExcelReader _reader;
@@ -48,7 +50,8 @@ namespace WizardDemo.Presenter
         private void View_OnReadingExcel(object sender, EventArgs e)
         {
             ExcelTable = ExcelReader.ReadExcel();
-            View.Zuordnungstable = ExcelReader.GetColumnInfos();
+            View.Zuordnungstable = new BindingList<ColumnInfo>(ExcelReader.GetColumnInfos());
+
         }
 
         public IView View { get; }

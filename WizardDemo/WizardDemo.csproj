@@ -109,7 +109,14 @@
     <Compile Include="Utils\SimpleExcelReader.cs" />
     <Compile Include="Utils\TypeGuesser.cs" />
     <Compile Include="View\IView.cs" />
+    <Compile Include="View\IZuordnungView.cs" />
     <Compile Include="View\MockView.cs" />
+    <Compile Include="ZuordnungDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZuordnungDialog.Designer.cs">
+      <DependentUpon>ZuordnungDialog.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ImporterDialog.resx">
       <DependentUpon>ImporterDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,7 +129,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ZuordnungDialog.resx">
+      <DependentUpon>ZuordnungDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\WizardDemo.Models.ColumnInfo.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

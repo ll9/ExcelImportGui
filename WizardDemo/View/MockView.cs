@@ -20,6 +20,7 @@ namespace WizardDemo.View
 
         public event EventHandler OnReadingExcel;
         public event EventHandler OnStoreDb;
+        public event EventHandler OnOpenZuordnungDialog;
 
         public void ReadExcel()
         {

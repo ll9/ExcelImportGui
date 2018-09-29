@@ -62,7 +62,7 @@ namespace WizardDemo
 
         public event EventHandler OnReadingExcel;
         public event EventHandler OnStoreDb;
-
+        public event EventHandler OnOpenZuordnungDialog;
 
         private void ExcelPathButton_Click(object sender, EventArgs e)
         {
@@ -74,6 +74,11 @@ namespace WizardDemo
                     Import.AllowNext = true;
                 }
             }
+        }
+
+        private void CustomizeTableButton_Click(object sender, EventArgs e)
+        {
+            OnOpenZuordnungDialog(sender, e);
         }
     }
 }

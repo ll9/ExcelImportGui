@@ -41,6 +41,19 @@ namespace WizardDemo.Presenter
         {
             View.OnReadingExcel += View_OnReadingExcel;
             View.OnStoreDb += View_OnStoreDb;
+            View.OnOpenZuordnungDialog += View_OnOpenZuordnungDialog;
+        }
+
+        private void View_OnOpenZuordnungDialog(object sender, EventArgs e)
+        {
+            var dialog = new ZuordnungDialog();
+            dialog.ZuordnungDataSource = ColumnInfos;
+
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                View.XDataSource = GetPossibleCoordinates();
+                View.YDataSource = GetPossibleCoordinates();
+            }
         }
 
         private void View_OnStoreDb(object sender, EventArgs e)

@@ -22,5 +22,6 @@ namespace WizardDemo.View
 
         event EventHandler OnReadingExcel;
         event EventHandler OnStoreDb;
+        event EventHandler OnOpenZuordnungDialog;
     }
 }

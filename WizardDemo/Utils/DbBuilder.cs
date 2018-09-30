@@ -101,22 +101,24 @@ namespace WizardDemo.Utils
                 .Aggregate((current, next) => $"{current}, {next}");
 
 
-            for (int i = 0; i < Data.Rows.Count; i++)
+            using (var connection = Connection)
+            using (var transaction = connection.BeginTransaction())
+            using (var command = connection.CreateCommand())
             {
-                var xCell = Data.Rows[i][XCoordinateHeader].ToString();
-                var yCell = Data.Rows[i][YCoordinateHeader].ToString();
-
-
-                string geomText = "null";
-                if (!string.IsNullOrEmpty(xCell) && !string.IsNullOrEmpty(yCell))
+                for (int i = 0; i < Data.Rows.Count; i++)
                 {
-                    geomText = GeometryTransformer.GetGeomFromTextString(double.Parse(xCell), double.Parse(yCell), Projection);
-                }
-                var query = $"INSERT INTO {TableName}({headers}) VALUES ({headerParameters}, {geomText})";
+                    var xCell = Data.Rows[i][XCoordinateHeader].ToString();
+                    var yCell = Data.Rows[i][YCoordinateHeader].ToString();
 
 
-                using (var command = new SQLiteCommand())
-                {
+                    string geomText = "null";
+                    if (!string.IsNullOrEmpty(xCell) && !string.IsNullOrEmpty(yCell))
+                    {
+                        geomText = GeometryTransformer.GetGeomFromTextString(double.Parse(xCell), double.Parse(yCell), Projection);
+                    }
+                    var query = $"INSERT INTO {TableName}({headers}) VALUES ({headerParameters}, {geomText})";
+
+
                     command.CommandText = query;
 
                     foreach (var info in ColumnInfos)
@@ -126,8 +128,9 @@ namespace WizardDemo.Utils
 
                         command.Parameters.AddWithValue($"@{info.DestinationName}", dynamicValue);
                     }
-                    ExecuteQuery(command);
+                    command.ExecuteNonQuery();
                 }
+                transaction.Commit();
             }
         }
     }

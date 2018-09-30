@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using WizardDemo.Models;
 using WizardDemo.Utils;
 using WizardDemo.View;
@@ -62,6 +63,7 @@ namespace WizardDemo.Presenter
 
         private void View_OnStoreDb(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             const string DbPath = @"C:\Users\Lenovo G50-45\Desktop\exceltestfiles\temp.sqlite";
 
             if (File.Exists(DbPath))
@@ -86,6 +88,7 @@ namespace WizardDemo.Presenter
 
         private void View_OnReadingExcel(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             ExcelTable = ExcelReader.ReadExcel();
             ColumnInfos = ExcelReader.GetColumnInfos();
 

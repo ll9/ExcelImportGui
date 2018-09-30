@@ -44,15 +44,15 @@ namespace WizardDemo.Models
             switch (dataType)
             {
                 case (DataType.System_Boolean):
-                    return bool.Parse(value);
+                    return bool.TryParse(value, out var boolVal) ? boolVal : (bool?)null;
                 case (DataType.System_DateTime):
                     return DateTime.Parse(value);
                 case (DataType.System_Double):
-                    return double.Parse(value);
+                    return double.TryParse(value, out var doubleVal) ? doubleVal : (double?)null;
                 case (DataType.System_Int32):
-                    return int.Parse(value);
+                    return int.TryParse(value, out var intVal) ? intVal : (int?)null;
                 case (DataType.System_Int64):
-                    return long.Parse(value);
+                    return long.TryParse(value, out var longVal) ? longVal : (long?)null;
                 case (DataType.System_String):
                     return value;
                 default:

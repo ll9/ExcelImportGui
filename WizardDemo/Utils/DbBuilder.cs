@@ -103,9 +103,15 @@ namespace WizardDemo.Utils
 
             for (int i = 0; i < Data.Rows.Count; i++)
             {
-                var x = double.Parse(Data.Rows[i][XCoordinateHeader].ToString());
-                var y = double.Parse(Data.Rows[i][YCoordinateHeader].ToString());
-                var geomText = GeometryTransformer.GetGeomFromTextString(x, y, Projection);
+                var xCell = Data.Rows[i][XCoordinateHeader].ToString();
+                var yCell = Data.Rows[i][YCoordinateHeader].ToString();
+
+
+                string geomText = "null";
+                if (!string.IsNullOrEmpty(xCell) && !string.IsNullOrEmpty(yCell))
+                {
+                    geomText = GeometryTransformer.GetGeomFromTextString(double.Parse(xCell), double.Parse(yCell), Projection);
+                }
                 var query = $"INSERT INTO {TableName}({headers}) VALUES ({headerParameters}, {geomText})";
 
 

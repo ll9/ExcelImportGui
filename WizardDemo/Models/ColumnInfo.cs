@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace WizardDemo.Models
@@ -18,7 +19,15 @@ namespace WizardDemo.Models
         }
 
         public string SourceName { get; set; }
-        public string DestinationName { get; set; }
+        private string _destinationName;
+        public string DestinationName
+        {
+            get => _destinationName;
+            set
+            {
+                _destinationName = Regex.Replace(value, "[^0-9a-zA-Z]+", "");
+            }
+        }
         public DataType DataType { get; set; }
         public bool Keep { get; set; }
     }

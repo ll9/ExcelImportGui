@@ -10,6 +10,7 @@ namespace WizardDemo.Utils
     public class DbBuilder : IDbBuilder
     {
         private const string GeometryColumn = "geometry";
+        private const string ID_COLUMN = "ogc_fid";
 
         public DbBuilder(string dbPath, string tableName, DataTable data, List<ColumnInfo> columnInfos, string xCoordinateHeader, string yCoordinateHeader, string projection)
         {
@@ -49,6 +50,7 @@ namespace WizardDemo.Utils
             var createStatement = $"CREATE TABLE {TableName}";
             var headers = GetColumInfoWithoutCoordinates()
                 .Select(info => $"{info.DestinationName} {info.DataType.GetSqlDataType()}")
+                .Concat(new[] { ID_COLUMN + " integer primary key"})
                 .Aggregate((current, next) => $"{current}, {next}");
 
             var query = $"{createStatement} ({headers})";

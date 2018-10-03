@@ -46,7 +46,7 @@ namespace WizardDemo.Models
                 case (DataType.System_Boolean):
                     return bool.TryParse(value, out var boolVal) ? boolVal : (bool?)null;
                 case (DataType.System_DateTime):
-                    return DateTime.Parse(value);
+                    return DateTime.TryParse(value, out var dateTimeVal) ? dateTimeVal : (DateTime?)null;
                 case (DataType.System_Double):
                     return double.TryParse(value, out var doubleVal) ? doubleVal : (double?)null;
                 case (DataType.System_Int32):

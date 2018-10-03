@@ -107,6 +107,7 @@ namespace WizardDemo.Presenter
                 new ProjectionViewModel("ESPG:25832", "+proj=utm +zone=32 +ellps=GRS80 +units=m +no_defs "),
                 new ProjectionViewModel("ESPG:25833", "+proj=utm +zone=33 +ellps=GRS80 +units=m +no_defs "),
                 new ProjectionViewModel("ESPG:25834", "+proj=utm +zone=34 +ellps=GRS80 +units=m +no_defs "),
+                new ProjectionViewModel("ESPG:4326", "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs "),
             };
         }
 

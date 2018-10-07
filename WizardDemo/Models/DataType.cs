@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace WizardDemo.Models
 {
@@ -58,6 +59,41 @@ namespace WizardDemo.Models
                 default:
                     return value;
             }
+        }
+
+        public static Type DataTypeToType(this DataType dataType)
+        {
+            switch (dataType)
+            {
+                case (DataType.System_Boolean):
+                    return typeof(bool);
+                case (DataType.System_DateTime):
+                    return typeof(DateTime);
+                case (DataType.System_Double):
+                    return typeof(double);
+                case (DataType.System_Int32):
+                    return typeof(int);
+                case (DataType.System_Int64):
+                    return typeof(long);
+                case (DataType.System_String):
+                    return typeof(string);
+                default:
+                    return typeof(string);
+            }
+        }
+
+        public static DataType TypeToDataType(Type type)
+        {
+            var @switch = new Dictionary<Type, DataType> {
+                { typeof(bool), DataType.System_Boolean },
+                { typeof(DateTime), DataType.System_DateTime },
+                { typeof(double), DataType.System_Double },
+                { typeof(int), DataType.System_Int32 },
+                { typeof(long), DataType.System_Int64 },
+                { typeof(string), DataType.System_String }
+            };
+
+            return @switch[type];
         }
     }
 }

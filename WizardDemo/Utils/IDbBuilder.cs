@@ -11,7 +11,7 @@ namespace WizardDemo.Utils
     {
         string DbPath { get; }
         string TableName { get; }
-        DataTable Data { get; }
+        DataTable DataTable { get; }
         List<ColumnInfo> ColumnInfos { get; }
 
         void CreateTable();

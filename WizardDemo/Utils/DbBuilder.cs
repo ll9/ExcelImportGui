@@ -16,7 +16,7 @@ namespace WizardDemo.Utils
         {
             DbPath = dbPath;
             TableName = tableName;
-            Data = data;
+            DataTable = data;
             ColumnInfos = columnInfos;
             XCoordinateHeader = xCoordinateHeader;
             YCoordinateHeader = yCoordinateHeader;
@@ -26,7 +26,7 @@ namespace WizardDemo.Utils
         #region //ClassProperties
         public string DbPath { get; }
         public string TableName { get; }
-        public DataTable Data { get; }
+        public DataTable DataTable { get; }
         public List<ColumnInfo> ColumnInfos { get; }
         public string XCoordinateHeader { get; }
         public string YCoordinateHeader { get; }
@@ -107,10 +107,10 @@ namespace WizardDemo.Utils
             using (var transaction = connection.BeginTransaction())
             using (var command = connection.CreateCommand())
             {
-                for (int i = 0; i < Data.Rows.Count; i++)
+                for (int i = 0; i < DataTable.Rows.Count; i++)
                 {
-                    var xCell = Data.Rows[i][XCoordinateHeader].ToString();
-                    var yCell = Data.Rows[i][YCoordinateHeader].ToString();
+                    var xCell = DataTable.Rows[i][XCoordinateHeader].ToString();
+                    var yCell = DataTable.Rows[i][YCoordinateHeader].ToString();
 
 
                     string geomText = "null";
@@ -125,7 +125,7 @@ namespace WizardDemo.Utils
 
                     foreach (var info in ColumnInfos)
                     {
-                        var cellValue = Data.Rows[i][info.SourceName].ToString();
+                        var cellValue = DataTable.Rows[i][info.SourceName].ToString();
                         var dynamicValue = info.DataType.GetDynamicValue(cellValue);
 
                         command.Parameters.AddWithValue($"@{info.DestinationName}", dynamicValue);

@@ -42,6 +42,7 @@
             this.XBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.CoordinateRadio = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.ImportWizard)).BeginInit();
             this.ImportPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -110,6 +111,7 @@
             // 
             // MappingPage
             // 
+            this.MappingPage.Controls.Add(this.CoordinateRadio);
             this.MappingPage.Controls.Add(this.CustomizeTableButton);
             this.MappingPage.Controls.Add(this.ProjectionBox);
             this.MappingPage.Controls.Add(this.label4);
@@ -186,6 +188,18 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "X-Koordinate";
             // 
+            // CoordinateRadio
+            // 
+            this.CoordinateRadio.AutoSize = true;
+            this.CoordinateRadio.Location = new System.Drawing.Point(38, 203);
+            this.CoordinateRadio.Name = "CoordinateRadio";
+            this.CoordinateRadio.Size = new System.Drawing.Size(122, 19);
+            this.CoordinateRadio.TabIndex = 7;
+            this.CoordinateRadio.TabStop = true;
+            this.CoordinateRadio.Text = "Keine Koordinaten";
+            this.CoordinateRadio.UseVisualStyleBackColor = true;
+            this.CoordinateRadio.CheckedChanged += new System.EventHandler(this.CoordinateRadio_CheckedChanged);
+            // 
             // ImporterDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -222,6 +236,7 @@
         private System.Windows.Forms.Button CustomizeTableButton;
         private AeroWizard.WizardPage ImportPage;
         private AeroWizard.WizardPage MappingPage;
+        private System.Windows.Forms.RadioButton CoordinateRadio;
     }
 }
 

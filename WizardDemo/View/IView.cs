@@ -23,6 +23,7 @@ namespace WizardDemo.View
         event EventHandler OnReadingExcel;
         event EventHandler OnStoreDb;
         event EventHandler OnOpenZuordnungDialog;
+        event EventHandler<bool> GeometryStateChanged;
 
         void SetDefaultXHeader(CoordinatesViewModel item);
         void SetDefaultYHeader(CoordinatesViewModel item);

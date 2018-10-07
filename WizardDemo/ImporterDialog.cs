@@ -79,6 +79,7 @@ namespace WizardDemo
         public event EventHandler OnReadingExcel;
         public event EventHandler OnStoreDb;
         public event EventHandler OnOpenZuordnungDialog;
+        public event EventHandler<bool> GeometryStateChanged;
 
         private void ExcelPathButton_Click(object sender, EventArgs e)
         {
@@ -105,6 +106,11 @@ namespace WizardDemo
         public void SetDefaultYHeader(CoordinatesViewModel item)
         {
             YBox.SelectedIndex = YBox.FindStringExact(item.Destination);
+        }
+
+        private void CoordinateRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            GeometryStateChanged(sender, CoordinateRadio.Checked);
         }
     }
 }

@@ -37,11 +37,11 @@
             this.MappingPage = new AeroWizard.WizardPage();
             this.CustomizeTableButton = new System.Windows.Forms.Button();
             this.ProjectionBox = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.ProjectionLabel = new System.Windows.Forms.Label();
             this.YBox = new System.Windows.Forms.ComboBox();
             this.XBox = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.YLabel = new System.Windows.Forms.Label();
+            this.XLabel = new System.Windows.Forms.Label();
             this.CoordinateRadio = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.ImportWizard)).BeginInit();
             this.ImportPage.SuspendLayout();
@@ -114,11 +114,11 @@
             this.MappingPage.Controls.Add(this.CoordinateRadio);
             this.MappingPage.Controls.Add(this.CustomizeTableButton);
             this.MappingPage.Controls.Add(this.ProjectionBox);
-            this.MappingPage.Controls.Add(this.label4);
+            this.MappingPage.Controls.Add(this.ProjectionLabel);
             this.MappingPage.Controls.Add(this.YBox);
             this.MappingPage.Controls.Add(this.XBox);
-            this.MappingPage.Controls.Add(this.label3);
-            this.MappingPage.Controls.Add(this.label2);
+            this.MappingPage.Controls.Add(this.YLabel);
+            this.MappingPage.Controls.Add(this.XLabel);
             this.MappingPage.Name = "MappingPage";
             this.MappingPage.Size = new System.Drawing.Size(437, 296);
             this.MappingPage.TabIndex = 1;
@@ -143,14 +143,14 @@
             this.ProjectionBox.Size = new System.Drawing.Size(121, 23);
             this.ProjectionBox.TabIndex = 5;
             // 
-            // label4
+            // ProjectionLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(35, 131);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 15);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Projektion";
+            this.ProjectionLabel.AutoSize = true;
+            this.ProjectionLabel.Location = new System.Drawing.Point(35, 131);
+            this.ProjectionLabel.Name = "ProjectionLabel";
+            this.ProjectionLabel.Size = new System.Drawing.Size(61, 15);
+            this.ProjectionLabel.TabIndex = 4;
+            this.ProjectionLabel.Text = "Projektion";
             // 
             // YBox
             // 
@@ -170,26 +170,27 @@
             this.XBox.Size = new System.Drawing.Size(121, 23);
             this.XBox.TabIndex = 2;
             // 
-            // label3
+            // YLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(35, 77);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 15);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Y-Koordinate";
+            this.YLabel.AutoSize = true;
+            this.YLabel.Location = new System.Drawing.Point(35, 77);
+            this.YLabel.Name = "YLabel";
+            this.YLabel.Size = new System.Drawing.Size(77, 15);
+            this.YLabel.TabIndex = 1;
+            this.YLabel.Text = "Y-Koordinate";
             // 
-            // label2
+            // XLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 15);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "X-Koordinate";
+            this.XLabel.AutoSize = true;
+            this.XLabel.Location = new System.Drawing.Point(32, 26);
+            this.XLabel.Name = "XLabel";
+            this.XLabel.Size = new System.Drawing.Size(77, 15);
+            this.XLabel.TabIndex = 0;
+            this.XLabel.Text = "X-Koordinate";
             // 
             // CoordinateRadio
             // 
+            this.CoordinateRadio.AutoCheck = false;
             this.CoordinateRadio.AutoSize = true;
             this.CoordinateRadio.Location = new System.Drawing.Point(38, 203);
             this.CoordinateRadio.Name = "CoordinateRadio";
@@ -198,7 +199,7 @@
             this.CoordinateRadio.TabStop = true;
             this.CoordinateRadio.Text = "Keine Koordinaten";
             this.CoordinateRadio.UseVisualStyleBackColor = true;
-            this.CoordinateRadio.CheckedChanged += new System.EventHandler(this.CoordinateRadio_CheckedChanged);
+            this.CoordinateRadio.Click += new System.EventHandler(this.CoordinateRadio_Click);
             // 
             // ImporterDialog
             // 
@@ -228,11 +229,11 @@
         private System.Windows.Forms.TextBox ExcelPathBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox ProjectionBox;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label ProjectionLabel;
         private System.Windows.Forms.ComboBox YBox;
         private System.Windows.Forms.ComboBox XBox;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label YLabel;
+        private System.Windows.Forms.Label XLabel;
         private System.Windows.Forms.Button CustomizeTableButton;
         private AeroWizard.WizardPage ImportPage;
         private AeroWizard.WizardPage MappingPage;

@@ -108,16 +108,22 @@ namespace WizardDemo
             YBox.SelectedIndex = YBox.FindStringExact(item.Destination);
         }
 
-        private void CoordinateRadio_CheckedChanged(object sender, EventArgs e)
-        {
-            GeometryStateChanged(sender, CoordinateRadio.Checked);
-        }
-
         public void SwitchCoordinateEnabledState()
         {
-            XBox.Enabled = !XBox.Enabled;
-            YBox.Enabled = !YBox.Enabled;
-            ProjectionBox.Enabled = !ProjectionBox.Enabled;
+            var state = !XBox.Enabled;
+
+            XBox.Enabled = state;
+            YBox.Enabled = state;
+            ProjectionBox.Enabled = state;
+            XLabel.Enabled = state;
+            YLabel.Enabled = state;
+            ProjectionLabel.Enabled = state;
+        }
+
+        private void CoordinateRadio_Click(object sender, EventArgs e)
+        {
+            CoordinateRadio.Checked = !CoordinateRadio.Checked;
+            GeometryStateChanged(sender, CoordinateRadio.Checked);
         }
     }
 }

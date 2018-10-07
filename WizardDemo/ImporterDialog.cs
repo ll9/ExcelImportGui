@@ -43,9 +43,9 @@ namespace WizardDemo
         }
 
         public string ExcelPath { get => ExcelPathBox.Text; set => throw new NotImplementedException(); }
-        public string XCoordinateHeader { get => XBox.SelectedValue.ToString(); set => throw new NotImplementedException(); }
-        public string YCoordinateHeader { get => YBox.SelectedValue.ToString(); set => throw new NotImplementedException(); }
-        public string Projection { get => ProjectionBox.SelectedValue.ToString(); set => throw new NotImplementedException(); }
+        public string XCoordinateHeader { get => XBox.Enabled ? XBox.SelectedValue.ToString() : null; set => throw new NotImplementedException(); }
+        public string YCoordinateHeader { get => YBox.Enabled ? YBox.SelectedValue.ToString() : null; set => throw new NotImplementedException(); }
+        public string Projection { get => ProjectionBox.Enabled ? ProjectionBox.SelectedValue.ToString() : null; set => throw new NotImplementedException(); }
 
         public object MappingDataSource => throw new NotImplementedException();
         public object XDataSource

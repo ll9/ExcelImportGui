@@ -67,7 +67,7 @@ namespace WizardDemo.Utils
 
         private string GetHeaders()
         {
-            return (HasGeometry? GetColumInfoWithoutCoordinates(): ColumnInfos)
+            return GetColumInfoWithoutCoordinates()
                 .Select(info => $"{info.DestinationName} {info.DataType.GetSqlDataType()}")
                 .Concat(new[] { ID_COLUMN + " integer primary key" })
                 .Aggregate((current, next) => $"{current}, {next}");
@@ -82,8 +82,13 @@ namespace WizardDemo.Utils
 
         private IEnumerable<ColumnInfo> GetColumInfoWithoutCoordinates()
         {
-            return ColumnInfos
-                            .Where(info => info.SourceName != XCoordinateHeader && info.SourceName != YCoordinateHeader);
+            if (HasGeometry)
+            {
+                return ColumnInfos
+                    .Where(info => info.SourceName != XCoordinateHeader && info.SourceName != YCoordinateHeader);
+            }
+
+            return ColumnInfos;
         }
 
         private void ExecuteQuery(string query)
@@ -123,15 +128,19 @@ namespace WizardDemo.Utils
             {
                 for (int i = 0; i < DataTable.Rows.Count; i++)
                 {
-                    var xCell = DataTable.Rows[i][XCoordinateHeader].ToString();
-                    var yCell = DataTable.Rows[i][YCoordinateHeader].ToString();
-
-
                     string geomText = "null";
-                    if (!string.IsNullOrEmpty(xCell) && !string.IsNullOrEmpty(yCell))
+
+                    if (HasGeometry)
                     {
-                        geomText = GeometryTransformer.GetGeomFromTextString(double.Parse(xCell), double.Parse(yCell), Projection);
+                        var xCell = DataTable.Rows[i][XCoordinateHeader].ToString();
+                        var yCell = DataTable.Rows[i][YCoordinateHeader].ToString();
+
+                        if (!string.IsNullOrEmpty(xCell) && !string.IsNullOrEmpty(yCell))
+                        {
+                            geomText = GeometryTransformer.GetGeomFromTextString(double.Parse(xCell), double.Parse(yCell), Projection);
+                        }
                     }
+
                     var query = $"INSERT INTO {TableName}({headers}) VALUES ({headerParameters}, {geomText})";
 
 

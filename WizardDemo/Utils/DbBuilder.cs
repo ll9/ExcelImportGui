@@ -23,6 +23,14 @@ namespace WizardDemo.Utils
             Projection = projection;
         }
 
+        public DbBuilder(string dbPath, string tableName, DataTable dataTable, List<ColumnInfo> columnInfos)
+        {
+            DbPath = dbPath;
+            TableName = tableName;
+            DataTable = dataTable;
+            ColumnInfos = columnInfos;
+        }
+
         #region //ClassProperties
         public string DbPath { get; }
         public string TableName { get; }
@@ -31,6 +39,7 @@ namespace WizardDemo.Utils
         public string XCoordinateHeader { get; }
         public string YCoordinateHeader { get; }
         public string Projection { get; }
+        public bool HasGeometry => !string.IsNullOrEmpty(XCoordinateHeader) && !string.IsNullOrEmpty(YCoordinateHeader) && !string.IsNullOrEmpty(Projection);
         #endregion
 
         public SQLiteConnection Connection
@@ -48,15 +57,20 @@ namespace WizardDemo.Utils
         public void CreateTable()
         {
             var createStatement = $"CREATE TABLE {TableName}";
-            var headers = GetColumInfoWithoutCoordinates()
-                .Select(info => $"{info.DestinationName} {info.DataType.GetSqlDataType()}")
-                .Concat(new[] { ID_COLUMN + " integer primary key"})
-                .Aggregate((current, next) => $"{current}, {next}");
+            string headers = GetHeaders();
 
             var query = $"{createStatement} ({headers})";
 
             ExecuteQuery(query);
             AddGeometry();
+        }
+
+        private string GetHeaders()
+        {
+            return (HasGeometry? GetColumInfoWithoutCoordinates(): ColumnInfos)
+                .Select(info => $"{info.DestinationName} {info.DataType.GetSqlDataType()}")
+                .Concat(new[] { ID_COLUMN + " integer primary key" })
+                .Aggregate((current, next) => $"{current}, {next}");
         }
 
         private void AddGeometry()

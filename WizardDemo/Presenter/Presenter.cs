@@ -15,15 +15,15 @@ namespace WizardDemo.Presenter
 {
     public class Presenter
     {
-        public DataTable ExcelTable { get; set; }
-        public List<ColumnInfo> ColumnInfos { get; set; }
-
         private const string DbName = "lds.sqlite";
         private const string TableName = "LDS_FEATURES";
 
+        public DataTable ExcelTable { get; set; }
+        public List<ColumnInfo> ColumnInfos { get; set; }
+        public bool HasGeometry { get; set; } = true;
+
         public string DbPath => $"{Application.StartupPath}\\{DbName}";
 
-        private IExcelReader _reader;
         public IExcelReader ExcelReader
         {
             get
@@ -33,7 +33,7 @@ namespace WizardDemo.Presenter
                     throw new FileNotFoundException("Could not find Path to Excel File");
                 }
 
-                return (_reader == null || _reader.Path != View.ExcelPath) ? new SimpleExcelReader(View.ExcelPath) : _reader;
+                return (Reader == null || Reader.Path != View.ExcelPath) ? new SimpleExcelReader(View.ExcelPath) : Reader;
             }
         }
 
@@ -54,6 +54,7 @@ namespace WizardDemo.Presenter
 
         private void View_GeometryStateChanged(object sender, bool e)
         {
+            HasGeometry = !HasGeometry;
             View.SwitchCoordinateEnabledState();
         }
 
@@ -165,5 +166,6 @@ namespace WizardDemo.Presenter
         }
 
         public IView View { get; }
+        public IExcelReader Reader { get; set; }
     }
 }

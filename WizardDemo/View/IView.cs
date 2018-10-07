@@ -27,5 +27,6 @@ namespace WizardDemo.View
 
         void SetDefaultXHeader(CoordinatesViewModel item);
         void SetDefaultYHeader(CoordinatesViewModel item);
+        void SwitchCoordinateEnabledState();
     }
 }

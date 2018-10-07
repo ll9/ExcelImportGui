@@ -112,5 +112,12 @@ namespace WizardDemo
         {
             GeometryStateChanged(sender, CoordinateRadio.Checked);
         }
+
+        public void SwitchCoordinateEnabledState()
+        {
+            XBox.Enabled = !XBox.Enabled;
+            YBox.Enabled = !YBox.Enabled;
+            ProjectionBox.Enabled = !ProjectionBox.Enabled;
+        }
     }
 }

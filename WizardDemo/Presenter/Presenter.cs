@@ -21,7 +21,7 @@ namespace WizardDemo.Presenter
         private const string DbName = "lds.sqlite";
         private const string TableName = "LDS_FEATURES";
 
-        public string DbPath =>  $"{Application.StartupPath}\\{DbName}";
+        public string DbPath => $"{Application.StartupPath}\\{DbName}";
 
         private IExcelReader _reader;
         public IExcelReader ExcelReader
@@ -49,6 +49,12 @@ namespace WizardDemo.Presenter
             View.OnReadingExcel += View_OnReadingExcel;
             View.OnStoreDb += View_OnStoreDb;
             View.OnOpenZuordnungDialog += View_OnOpenZuordnungDialog;
+            View.GeometryStateChanged += View_GeometryStateChanged;
+        }
+
+        private void View_GeometryStateChanged(object sender, bool e)
+        {
+            View.SwitchCoordinateEnabledState();
         }
 
         private void View_OnOpenZuordnungDialog(object sender, EventArgs e)
@@ -70,7 +76,7 @@ namespace WizardDemo.Presenter
         private void View_OnStoreDb(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            
+
 
             if (File.Exists(DbPath))
             {

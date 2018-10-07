@@ -21,6 +21,7 @@ namespace WizardDemo.View
         public event EventHandler OnReadingExcel;
         public event EventHandler OnStoreDb;
         public event EventHandler OnOpenZuordnungDialog;
+        public event EventHandler<bool> GeometryStateChanged;
 
         public void ReadExcel()
         {
@@ -42,5 +43,9 @@ namespace WizardDemo.View
             throw new NotImplementedException();
         }
 
+        public void SwitchCoordinateEnabledState()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
